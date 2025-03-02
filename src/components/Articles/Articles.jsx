@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useGetArticlesQuery } from '../../store/apiSlice';
 import Post from '../Post';
 import { Spin, Pagination } from 'antd';
