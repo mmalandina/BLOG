@@ -12,6 +12,7 @@ dist
 dist-ssr
 lint-staged.config.js
 *.local
+.eslintignore
 
 # Editor directories and files
 .vscode/*

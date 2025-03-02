@@ -5,7 +5,10 @@ export const apiSlice = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://blog-platform.kata.academy/api',
     prepareHeaders: (headers, { getState }) => {
-      const token = getState().auth.token;
+      let token = getState().auth.token;
+      if (!token) {
+        token = localStorage.getItem('token');
+      }
       if (token) {
         headers.set('Authorization', `Token ${token}`);
       }
@@ -165,13 +168,21 @@ export const apiSlice = createApi({
       ],
     }),
     updateUser: builder.mutation({
-      query: ({ username, email, bio, image }) => ({
-        url: '/user',
-        method: 'PUT',
-        body: {
-          user: { username, email, bio, image: image === '' ? null : image },
-        },
-      }),
+      query: ({ username, email, image, password }) => {
+        const userPayload = {
+          username,
+          email,
+          image: image === '' ? null : image,
+        };
+        if (password) {
+          userPayload.password = password;
+        }
+        return {
+          url: '/user',
+          method: 'PUT',
+          body: { user: userPayload },
+        };
+      },
       invalidatesTags: ['User'],
     }),
   }),

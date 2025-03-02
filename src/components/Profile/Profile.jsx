@@ -19,7 +19,6 @@ const Profile = () => {
       username: '',
       email: '',
       newPassword: '',
-      bio: '',
       image: '',
     },
   });
@@ -29,7 +28,6 @@ const Profile = () => {
       reset({
         username: user.username,
         email: user.email,
-        bio: user.bio || '',
         image: user.image || '',
         newPassword: '',
       });
@@ -39,7 +37,16 @@ const Profile = () => {
   const [updateUser, { isLoading }] = useUpdateUserMutation();
 
   const onSubmit = (data) => {
-    updateUser(data)
+    const payload = {
+      username: data.username,
+      email: data.email,
+      image: data.image,
+    };
+    if (data.newPassword) {
+      payload.password = data.newPassword;
+    }
+
+    updateUser(payload)
       .unwrap()
       .then((response) => {
         dispatch(setUser(response.user));
@@ -47,8 +54,11 @@ const Profile = () => {
       })
       .catch((error) => {
         if (error.data?.errors) {
-          Object.entries(error.data.errors).forEach(([field, messages]) => {
-            setError(field, { type: 'server', message: messages.join(', ') });
+          Object.entries(error.data.errors).forEach(([field, message]) => {
+            const errorMessage = Array.isArray(message)
+              ? message.join(', ')
+              : message;
+            setError(field, { type: 'server', message: errorMessage });
           });
         } else {
           alert('Profile update failed.');
@@ -64,7 +74,19 @@ const Profile = () => {
           Username
           <input
             type="text"
-            {...register('username', { required: 'Username is required' })}
+            {...register('username', {
+              required: 'Username is required',
+              minLength: {
+                value: 3,
+                message: 'Username must be at least 3 characters',
+              },
+              maxLength: {
+                value: 20,
+                message: 'Username must be at most 20 characters',
+              },
+              validate: (value) =>
+                !/\s/.test(value) || 'Username must not contain spaces',
+            })}
             className={`form-input ${errors.username ? 'input-error' : ''}`}
           />
           {errors.username && (
@@ -78,8 +100,9 @@ const Profile = () => {
             {...register('email', {
               required: 'Email is required',
               pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
-                message: 'Invalid email',
+                value:
+                  /(^[a-z][a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)/,
+                message: 'Invalid email address',
               },
             })}
             className={`form-input ${errors.email ? 'input-error' : ''}`}
@@ -91,8 +114,13 @@ const Profile = () => {
           <input
             type="password"
             {...register('newPassword', {
-              minLength: { value: 6, message: 'Minimum 6 characters' },
-              maxLength: { value: 40, message: 'Maximum 40 characters' },
+              validate: (value) => {
+                if (value === '') return true;
+                return (
+                  (value.length >= 6 && value.length <= 40) ||
+                  'New password must be between 6 and 40 characters'
+                );
+              },
             })}
             className={`form-input ${errors.newPassword ? 'input-error' : ''}`}
           />

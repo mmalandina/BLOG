@@ -62,7 +62,8 @@ const SignUp = () => {
             {...register('email', {
               required: 'Email is required',
               pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                value:
+                  /(^[a-z][a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)/,
                 message: 'Invalid email',
               },
             })}

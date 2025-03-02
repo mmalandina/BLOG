@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import { useGetArticlesQuery } from '../../store/apiSlice';
 import Post from '../Post';
 import { Spin, Pagination } from 'antd';
@@ -36,5 +37,7 @@ const Articles = () => {
     </div>
   );
 };
+
+Articles.propTypes = {};
 
 export default Articles;
