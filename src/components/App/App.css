@@ -1,0 +1,192 @@
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter';
+  margin: 0;
+  padding: 0;
+  background: #f2f2f2;
+  color: #333;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+button {
+  cursor: pointer;
+  outline: none;
+  font-family: inherit;
+}
+
+.signup,
+.signin,
+.profile {
+  box-sizing: content-box;
+  margin: 2rem auto;
+  width: 384px;
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  margin-top: 59px;
+  box-shadow: 0px 0.61px 2.93px 0px #00000005;
+  box-shadow: 0px 1.46px 7.05px 0px #00000007;
+  box-shadow: 0px 2.75px 13.27px 0px #00000009;
+  box-shadow: 0px 4.91px 23.68px 0px #0000000b;
+  box-shadow: 0px 9.19px 44.28px 0px #0000000d;
+  box-shadow: 0px 22px 106px 0px #00000012;
+  border: 1px solid #d9d9d9;
+  border-radius: 6px;
+  width: 316px;
+  align-self: center;
+  align-items: center;
+  row-gap: 21px;
+  padding: 48px 33px;
+  padding-bottom: 14px;
+}
+
+textarea {
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  outline: none;
+}
+
+.error,
+.error_message {
+  display: block;
+  position: relative;
+  top: -11px;
+  color: #f5222d;
+  font-size: 14px;
+}
+
+.signup h2,
+.signin h2,
+.profile h2 {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 500;
+  text-align: center;
+  margin: 0px;
+}
+
+.signup__form,
+.signin__form,
+.profile__form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 21px;
+}
+
+.signup__form_item,
+.signin__form_item,
+.profile__form_item {
+  width: 320px;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+  line-height: 22px;
+  font-weight: 400;
+  text-align: start;
+  margin: 0px;
+}
+
+.signup__form_item input,
+.signin__form_item input,
+.profile__form_item input {
+  min-height: 36px;
+  color: #bfbfbf;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  padding-left: 12px;
+  width: 300px;
+  box-sizing: content-box;
+}
+
+input.input-error {
+  border: 1px solid #f5222d;
+}
+
+input.input-error:focus {
+  outline: #f5222d;
+}
+
+.signup__checkbox {
+  display: flex;
+  text-align: start;
+  flex-direction: row;
+  align-items: center;
+  gap: 7px;
+}
+
+.signup__checkbox input {
+  width: 16px;
+  height: 16px;
+  position: relative;
+  top: -11px;
+}
+
+.input-error_terms {
+  margin-top: -14px;
+  margin-bottom: auto;
+}
+
+.link__description {
+  font-size: 14px;
+  text-align: center;
+  margin-top: 0;
+}
+
+.link {
+  color: #1890ff;
+}
+
+.signup button {
+  margin-bottom: auto;
+}
+
+.signup__confirm {
+  font-size: 0.9rem;
+}
+
+.signup__submit,
+.signin__submit,
+.profile__submit {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+}
+
+.signup button,
+.signin button,
+.profile button {
+  background-color: #1890ff;
+  color: #ffffff;
+  border: none;
+  border-radius: 4px;
+  width: 316px;
+  height: 40px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 24px;
+}
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+  margin-bottom: auto;
+}

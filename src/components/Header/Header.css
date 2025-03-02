@@ -1,0 +1,94 @@
+.header {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 22px;
+  align-items: center;
+}
+
+.header__title {
+  line-height: 28px;
+  letter-spacing: 0%;
+  margin: 0px;
+  display: inline-block;
+  font-size: 18px;
+  text-align: center;
+  font-weight: 400;
+  text-decoration: none;
+  color: #000000d9;
+}
+
+.header__buttons {
+  display: flex;
+  column-gap: 27px;
+  align-items: center;
+}
+
+.header__buttons .sign {
+  background-color: #ffffff;
+  font-size: 18px;
+  line-height: 28px;
+  padding: 10px 15px;
+  text-decoration: none;
+}
+
+.header__buttons_signin {
+  border: 1px solid white;
+  color: #000000d9;
+  border-radius: 5px;
+}
+
+.header__buttons_signin:hover {
+  border: 1px solid #000000d9;
+}
+
+.header__buttons_signup {
+  color: #52c41a;
+  border: 1px solid #52c41a;
+  border-radius: 5px;
+  margin-left: 25px;
+}
+
+.header__buttons_new-article {
+  display: flex;
+  color: #52c41a;
+  border: 1px solid #52c41a;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 14px;
+  padding: 6px 10px;
+  height: 18px;
+  box-sizing: content-box;
+}
+
+.header__buttons_signup:hover,
+.header__buttons_new-article:hover {
+  color: white;
+  background: #52c41a;
+}
+
+.header__profile {
+  display: flex;
+  align-items: center;
+  column-gap: 13px;
+  color: #000000d9;
+  font-size: 18px;
+  text-decoration: none;
+}
+
+.header__profile_image {
+  width: 46px;
+  height: 46px;
+  border-radius: 100%;
+}
+
+.header__buttons_logout {
+  color: #000000bf;
+  border: 1px solid #000000bf;
+  border-radius: 5px;
+}
+
+.header__buttons_logout:hover {
+  color: white;
+  background: #000000bf;
+}

@@ -1,0 +1,19 @@
+.articles {
+  margin: 2rem auto;
+  padding: 0px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 26px;
+  align-self: center;
+}
+
+.list-articles {
+  padding: 0px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 26px;
+}

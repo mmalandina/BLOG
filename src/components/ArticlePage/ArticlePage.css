@@ -1,0 +1,196 @@
+.article {
+  position: relative;
+  box-sizing: content-box;
+  max-width: 938px;
+  background-color: white;
+  box-shadow: 0px 4px 12px 0px #00000026;
+  margin: 2rem auto;
+  margin-top: 26px;
+  padding: 16px;
+  padding-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 25px;
+}
+
+.article__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.article__info {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+}
+
+.article__header {
+  position: relative;
+  top: -14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.article__title {
+  font-size: 20px;
+  font-weight: 400;
+  line-height: 28px;
+  color: #1890ff;
+  margin: 0px;
+}
+
+.post__likes,
+.article__likes {
+  margin: auto auto auto 14px;
+  position: relative;
+  top: -3px;
+  display: flex;
+  align-items: center;
+  margin-top: 0.5rem;
+}
+
+.article__likes_button,
+.post__likes_button {
+  background: none;
+  border: none;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  margin-right: 0.5rem;
+  transition: background 0.3s ease;
+}
+
+.article__likes_button.active,
+.post__likes_button.active {
+  color: red;
+}
+
+.article__likes_button.disable,
+.post__likes_button.disable {
+  opacity: 0.5;
+}
+
+.article__likes_button::before,
+.post__likes_button::before {
+  border: none;
+  content: '♡';
+  font-size: 30px;
+  position: relative;
+  bottom: 3px;
+  right: -3px;
+}
+
+.article__likes_count {
+  position: relative;
+  top: -1px;
+}
+
+.article__tags {
+  position: relative;
+  top: -21px;
+  list-style-type: none;
+  display: flex;
+  padding: 0px;
+  column-gap: 8px;
+}
+
+.article__tag {
+  padding: 3px;
+  border: 1px solid #00000080;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 14.52px;
+  color: #00000080;
+}
+
+.post__description,
+.article__description {
+  width: 628px;
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #00000080;
+}
+
+.article__description {
+  position: relative;
+  top: -14px;
+}
+
+.article__container_container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.post__author,
+.article__author {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: flex;
+  column-gap: 12px;
+}
+
+.post__author_container,
+.article__author_container {
+  display: flex;
+  flex-direction: column;
+}
+
+.profile_photo {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+}
+
+.article__buttons {
+  position: absolute;
+  top: 75px;
+  left: 804px;
+  display: flex;
+  gap: 0.5rem;
+}
+
+.article__buttons_delete {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #f5222d;
+  border: 1px solid #f5222d;
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px 17px;
+}
+
+.article__buttons_edit {
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 22px;
+  color: #52c41a;
+  border: 1px solid #52c41a;
+  border-radius: 5px;
+  background-color: white;
+  padding: 5px 19px;
+  text-decoration: none;
+}
+
+.article__buttons_delete:hover {
+  color: white;
+  background: #f5222d;
+}
+
+.article__buttons_edit:hover {
+  color: white;
+  background: #52c41a;
+}
+
+.article__body {
+  box-sizing: border-box;
+  position: relative;
+  top: -42px;
+}
