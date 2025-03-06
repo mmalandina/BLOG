@@ -13,7 +13,7 @@ const CreateArticle = () => {
   } = useForm();
   const [tagList, setTagList] = useState([]);
   const [newTag, setNewTag] = useState('');
-  const [createArticle] = useCreateArticleMutation();
+  const [createArticle, { isLoading }] = useCreateArticleMutation();
   const navigate = useNavigate();
 
   const addTag = (e) => {
@@ -35,7 +35,6 @@ const CreateArticle = () => {
     createArticle({ title, description, body: text, tagList })
       .unwrap()
       .then(() => {
-        alert('Article created successfully!');
         navigate('/articles');
       })
       .catch((error) => {
@@ -111,8 +110,12 @@ const CreateArticle = () => {
             </div>
           </div>
         </div>
-        <button type="submit" className="new-article__form_submit">
-          Send
+        <button
+          type="submit"
+          className="new-article__form_submit"
+          disabled={isLoading}
+        >
+          {isLoading ? 'Sending...' : 'Send'}
         </button>
       </form>
     </article>

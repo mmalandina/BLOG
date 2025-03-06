@@ -12,7 +12,7 @@ const SignIn = () => {
     formState: { errors },
     setError,
   } = useForm();
-  const [signInUser] = useSignInUserMutation();
+  const [signInUser, { isLoading }] = useSignInUserMutation();
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
@@ -26,16 +26,24 @@ const SignIn = () => {
         navigate('/articles');
       })
       .catch((error) => {
-        if (error.data && error.data.errors) {
-          const serverErrors = error.data.errors;
-          for (const field in serverErrors) {
-            setError(field, {
-              type: 'server',
-              message: serverErrors[field].join(', '),
-            });
-          }
+        if (error.status === 422 || error.data?.error === 'Unauthorized') {
+          setError('email', {
+            type: 'server',
+            message: 'Неверный email или пароль.',
+          });
+          setError('password', {
+            type: 'server',
+            message: 'Неверный email или пароль.',
+          });
+        } else if (error.data?.errors) {
+          Object.entries(error.data.errors).forEach(([field, messages]) => {
+            setError(field, { type: 'server', message: messages.join(', ') });
+          });
         } else {
-          alert('Sign in failed.');
+          setError('root', {
+            type: 'server',
+            message: 'Произошла ошибка. Попробуйте снова.',
+          });
         }
       });
   };
@@ -51,7 +59,8 @@ const SignIn = () => {
             {...register('email', {
               required: 'Email is required',
               pattern: {
-                value: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+                value:
+                  /(^[a-z][a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$)/,
                 message: 'Invalid email',
               },
             })}
@@ -70,7 +79,10 @@ const SignIn = () => {
             <p className="error">{errors.password.message}</p>
           )}
         </label>
-        <button type="submit">Login</button>
+        {errors.root && <p className="error">{errors.root.message}</p>}
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? 'Loading...' : 'Login'}
+        </button>
         <p className="link__description">
           Don’t have an account?{' '}
           <Link to="/sign-up" className="link">

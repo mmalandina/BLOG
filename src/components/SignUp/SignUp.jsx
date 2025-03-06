@@ -11,7 +11,7 @@ const SignUp = () => {
     formState: { errors },
     setError,
   } = useForm();
-  const [registerUser] = useRegisterUserMutation();
+  const [registerUser, { isLoading }] = useRegisterUserMutation();
   const password = watch('password');
 
   const onSubmit = (data) => {
@@ -22,16 +22,15 @@ const SignUp = () => {
         alert('User registered successfully!');
       })
       .catch((error) => {
-        if (error.data && error.data.errors) {
-          const serverErrors = error.data.errors;
-          for (const field in serverErrors) {
-            setError(field, {
-              type: 'server',
-              message: serverErrors[field].join(', '),
-            });
-          }
+        if (error.data?.errors) {
+          Object.entries(error.data.errors).forEach(([field, messages]) => {
+            setError(field, { type: 'server', message: messages.join(', ') });
+          });
         } else {
-          alert('Registration failed.');
+          setError('root', {
+            type: 'server',
+            message: 'Registration failed. Please try again.',
+          });
         }
       });
   };
@@ -117,7 +116,10 @@ const SignUp = () => {
             {errors.agreeToTerms.message}
           </p>
         )}
-        <button type="submit">Create</button>
+        {errors.root && <p className="error">{errors.root.message}</p>}
+        <button type="submit" disabled={isLoading}>
+          {isLoading ? 'Creating...' : 'Create'}
+        </button>
         <p className="link__description">
           Already have an account?{' '}
           <Link to="/sign-in" className="link">

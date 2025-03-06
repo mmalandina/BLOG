@@ -144,7 +144,7 @@ const Profile = () => {
           {errors.image && <p className="error">{errors.image.message}</p>}
         </label>
         <button type="submit" className="submit" disabled={isLoading}>
-          Save
+          {isLoading ? 'Saving...' : 'Save'}
         </button>
       </form>
     </div>

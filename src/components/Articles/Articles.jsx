@@ -1,13 +1,23 @@
 import React, { useState } from 'react';
-import PropTypes from 'prop-types';
 import { useGetArticlesQuery } from '../../store/apiSlice';
 import Post from '../Post';
 import { Spin, Pagination } from 'antd';
+import { useLocation, useNavigate } from 'react-router-dom';
 import './Articles.css';
 
 const Articles = () => {
-  const [currentPage, setCurrentPage] = useState(1);
+  const location = useLocation();
+  const navigate = useNavigate();
+  const queryParams = new URLSearchParams(location.search);
+  const initialPage = parseInt(queryParams.get('page')) || 1;
+  const [currentPage, setCurrentPage] = useState(initialPage);
+
   const { data, error, isLoading } = useGetArticlesQuery(currentPage);
+
+  const handlePageChange = (page) => {
+    setCurrentPage(page);
+    navigate(`?page=${page}`);
+  };
 
   if (isLoading)
     return (
@@ -32,12 +42,10 @@ const Articles = () => {
         total={totalArticles}
         showSizeChanger={false}
         pageSize={5}
-        onChange={(page) => setCurrentPage(page)}
+        onChange={handlePageChange}
       />
     </div>
   );
 };
-
-Articles.propTypes = {};
 
 export default Articles;

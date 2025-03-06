@@ -20,7 +20,7 @@ const EditArticle = () => {
   } = useForm();
   const [tagList, setTagList] = useState([]);
   const [newTag, setNewTag] = useState('');
-  const [editArticle] = useEditArticleMutation();
+  const [editArticle, { isLoading: isSubmitting }] = useEditArticleMutation();
 
   useEffect(() => {
     if (article) {
@@ -50,7 +50,6 @@ const EditArticle = () => {
     editArticle({ slug, title, description, body: text, tagList })
       .unwrap()
       .then(() => {
-        alert('Article updated successfully!');
         navigate(`/articles/${slug}`);
       })
       .catch((error) => {
@@ -131,8 +130,12 @@ const EditArticle = () => {
             </div>
           </div>
         </div>
-        <button type="submit" className="new-article__form_submit">
-          Send
+        <button
+          type="submit"
+          className="new-article__form_submit"
+          disabled={isSubmitting}
+        >
+          {isSubmitting ? 'Saving...' : 'Save'}
         </button>
       </form>
     </article>
