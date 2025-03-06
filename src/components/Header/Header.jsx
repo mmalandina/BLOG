@@ -28,7 +28,7 @@ const Header = () => {
             <span className="header__profile_username">{user?.username}</span>
             <img
               className="header__profile_image"
-              src={user?.image || './noimg.svg'}
+              src={user?.image || '../../../public/noimg.svg'}
               alt="profile"
             />
           </Link>
