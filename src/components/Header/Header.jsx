@@ -3,6 +3,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { logout } from '../../store/authSlice';
 import './Header.css';
+import noimg from '../../../public/noimg.svg';
 
 const Header = () => {
   const { token, user } = useSelector((state) => state.auth);
@@ -28,7 +29,7 @@ const Header = () => {
             <span className="header__profile_username">{user?.username}</span>
             <img
               className="header__profile_image"
-              src={user?.image || '../../../public/noimg.svg'}
+              src={user?.image || noimg}
               alt="profile"
             />
           </Link>
